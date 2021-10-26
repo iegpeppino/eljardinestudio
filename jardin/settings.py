@@ -140,9 +140,9 @@ STATIC_URL = 'https://storage.googleapis.com/eljardinestudio/'
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = 'static/media'
+MEDIA_ROOT =  BASE_DIR / 'static/media'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root/')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
