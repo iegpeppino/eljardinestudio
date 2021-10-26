@@ -56,7 +56,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'jardin.urls'
 
-
+DEBUG = True
 
 TEMPLATES = [
     {
