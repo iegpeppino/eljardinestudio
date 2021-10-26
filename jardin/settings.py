@@ -129,7 +129,7 @@ USE_TZ = True
 
 #STATIC_URL = '/static/'
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"]="N:/Programming/credentials/credentials.json"
+GOOGLE_APPLICATION_CREDENTIALS = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 # Google bucket credentials
 
 
