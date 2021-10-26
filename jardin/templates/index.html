@@ -18,8 +18,8 @@
     <title>Main Page</title>
 </head>
 <body>
-    <img class="logocorner" src="{% static 'logowbg.png' %}" id="desktop">
-    <img class="sobrelogo" src="{% static 'siluetast.png' %}" id="desktop">
+    <img class="logocorner" src="{% static '/images/logowbg.png' %}" id="desktop">
+    <img class="sobrelogo" src="{% static './images/siluetast.png' %}" id="desktop">
          <div class="container">
             <div id="desktop">
                 <nav class="navbar">
@@ -244,7 +244,7 @@
                                     {% for associate in contact.associatecard_set.all %}
                                     <div class="arrowlink">
                                         <a href="{{associate.url}}" id="arrowlink">
-                                            <img src="../../static/assets/css/arrowicon.png" alt="">
+                                            <img src="../../static/css/arrowicon.png" alt="">
                                         </a>
                                     </div>
                                     <div class="asc-card" id="asc-card">

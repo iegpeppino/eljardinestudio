@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jardinpage.apps.JardinpageConfig',
     'django_cleanup.apps.CleanupConfig',
+    'storages',
     
 ]
 
@@ -155,16 +156,25 @@ USE_TZ = True
 #     project=gcp_project, credentials=credentials)
 
 
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = 'eljardinestudio'
-STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-STATIC_URL = 'https://storage.googleapis.com/eljardinestudio/'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-MEDIA_URL = '/media/'
+AWS_ACCESS_KEY_ID = os.environ.get('JARDIN_ACCESS_KEY')
 
-MEDIA_ROOT =  BASE_DIR / 'static/media'
+AWS_SECRET_ACCESS_KEY = os.environ.get('JARDIN_SECRET_ACCESS_KEY')
+
+AWS_STORAGE_BUCKET_NAME = 'eljardinestudio'
+
+AWS_S3_CUSTOM_DOMAIN = f'eljardinestudio.s3.amazonaws.com'
+
+AWS_QUERYSTRING_AUTH = False
+
+MEDIA_URL = '/images/'
+
+MEDIA_ROOT =  BASE_DIR / 'static/images'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
