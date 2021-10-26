@@ -1,0 +1,334 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- CSS -->
+    <link rel='stylesheet' href='../../static/css/all.css'>
+    {% comment %} <link rel="stylesheet" href="../../static/assets/css/all.css"> {% endcomment %}
+    <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans:400,800' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href='../../static/css/style.css'>
+    <!-- SCRIPTS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Main Page</title>
+</head>
+<body>
+    <img class="logocorner" src="{% static 'logowbg.png' %}" id="desktop">
+    <img class="sobrelogo" src="{% static 'siluetast.png' %}" id="desktop">
+         <div class="container">
+            <div id="desktop">
+                <nav class="navbar">
+                    <div class="wrap">
+                        <ul>
+                            <li class="ihome">
+                                <div class="primernav">
+                                    <a href="#home"><i class="fas fa-home"></i></a>
+                                    <div class="slider">
+                                        <p>inicio</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="iabout">
+                                <div class="segundonav">
+                                    <a href="#about"><i class="fas fa-seedling"></i></a>
+                                    <div class="slider">
+                                        <p>el jardin</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="iservices">
+                                <div class="tercernav">
+                                    <a href="#services"><i class="fas fa-toolbox"></i></a>
+                                    <div class="slider">
+                                        <p>servicios</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="icontact">
+                                <div class="cuartonav">
+                                    <a href="#contact"><i class="fas fa-address-card"></i></a>
+                                    <div class="slider">
+                                        <p>contacto</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="iportfolio">
+                                <div class="quintonav">
+                                    <a href="#portfolio"><i class="fas fa-music"></i></a>
+                                    <div class="slider">
+                                        <p>Portfolio</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div id="mobile">
+                <div class="icon-bar">
+                    <a class="active" href="#home"><i class="fas fa-home"></i></a>
+                    <a href="#about"><i class="fas fa-seedling"></i></a>
+                    <a href="#services"><i class="fa fa-toolbox"></i></a>
+                    <a href="#contact"><i class="fas fa-address-card"></i></a>
+                    <a href="#portfolio"><i class="fas fa-music"></i></a>
+                  </div>
+            </div>
+            <div class="content">
+                <section id="home">
+                    <div class="home-container">
+                        <div class="home-header">
+                            <h1>EL JARDÍN<br>ESTUDIO</h1>
+                            <img src="{{ home.logo.url }}" style= 'aspect-ratio: 0.699;'>
+                        </div>
+                        <div class="home-subheader">
+                            <p>{{ home.text }}</p>
+                            <iframe src="https://open.spotify.com/embed/playlist/06JA94AqicJDVSK6zufn0P?theme=0"
+                            width="100%" height="80"  frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                        </div>
+                    </div>
+                </section>
+                <div class="spacer ola1"></div>
+                <section id="about">
+                    <h1 id="about-header">{{about.heading}}</h1>
+                        <div class="wrapper">
+                            <div class="author">
+                                <h2 style="color: #333;"><b>{{about.subheading}}</b></h1>
+                                <p style="color: #333;">{{about.description_1}}</p>
+                            </div>
+                            <div class="player">
+                                <div class="slideshow-container">
+                                {% for slide in about.slider_about_set.all %}
+                                  <div class="mySlides1 fade">
+                                    <div class="numbertext">{{loop.index}} / {{loop.last}}</div>
+                                    <img src="{{slide.photo.url}}" style= "width: 100%">
+                                    <div class="caption">{{slide.title}}</div>
+                                  </div>
+                                {% endfor %}
+                                <br>
+                                <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+                                <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+                              </div>
+                            </div>
+                        </div>
+                        <h1 id="jardineros">Jardineros</h1>
+                        <div class="wrapcard">
+                            {% for jardinero in about.profile_set.all %}
+                                <div class="card">
+                                    <img src="{{jardinero.profile_img.url}}">
+                                    <div class="cardtext">
+                                        <h3><b>{{jardinero.nombre_jardinero}}</b></h3>
+                                        <p style="color: #333;">{{jardinero.acerca}}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                </section>
+                <div class="spacer ola2"></div>
+                <section id="services">
+                    {% for service in services %}
+                        <div class="service-head">
+                            <h1>{{service.header}}</h1>
+                        </div>
+                        <div class="wrapper">
+                            <div class="author">
+                            <h2>{{service.subheader}}</h2>   
+                            {% for category in service.category_set.all %}
+                            <ul id="service-list">
+                                <li>
+                                    <h2>{{category.title}}</h2>
+                                </li>
+                                <p>{{category.description}}</p>
+                            </ul>
+                            {% endfor %}
+                            </div>
+                            <div class="player">
+                                <div class="slideshow-container">
+                                    {% for slide in service.slider_services_set.all %}
+                                        <div class="mySlides2 fade">
+                                            <div class="numbertext">{{loop.index}} / {{loop.last}}</div>
+                                            <img src="{{slide.photo.url}}" style= "width: 100%">
+                                            <div class="caption">{{slide.title}}</div>
+                                        </div>
+                                    {% endfor %}
+                                    <br>
+                                    <a class="prev" onclick="plusSlides(-1, 1)">&#10094;</a>
+                                    <a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="wrapper" id='facility'>
+                            <div class="author" 1>
+                                {% for facility in service.facility_set.all %}
+                                    <h1>{{facility.title}}</h1>
+                                    <p>{{facility.description}}</p>
+                                {% endfor %}
+                            </div>
+                            <div class="player">
+                                <div class="slideshow-container">
+                                    {% for slide in service.slider_facility_set.all %}
+                                        <div class="mySlides3 fade">
+                                            <div class="numbertext">{{loop.index}} / {{loop.last}}</div>
+                                            <img src="{{slide.photo.url}}" style= "width: 100%">
+                                            <div class="caption">{{slide.title}}</div>
+                                        </div>
+                                    {% endfor%}
+                                    <br>
+                                    <a class="prev" onclick="plusSlides(-1, 2)">&#10094;</a>
+                                    <a class="next" onclick="plusSlides(1, 2)">&#10095;</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}         
+                </section>
+                <div class="spacer ola3"></div>
+                <section id="contact">
+                    {% for contact in contact %}
+                        <h1>{{ contact.title }}</h1>
+                        <div class="address-container">
+                            <div class="address-text">
+                                <p id="address-1">Podés encontrarnos en:<br>
+                                    Colombia 133, Nueva Córdoba.<br>
+                                    <i>(Ciudad de Córdoba - Argentina)</i><br><br>
+                                </p>
+                                <p id="address-2">También podes comunicarte con nosotros<br>
+                                    a través de nuestras redes sociales<br>
+                                    usando los siguientes enlaces:
+                                </p>
+                            </div>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d508.4992011887146!2d-64.
+                            18892915100902!3d-31.43244614487403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432a28c8165ce03%3A0xca9daf6e7ae53557!
+                            2sColombia%20133%2C%20X5000%20CUC%2C%20C%C3%B3rdoba!5e0!3m2!1ses!2sar!4v1630613681970!5m2!1ses!2sar"
+                             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                        <div class="contact-wrap">
+                            {% for contactcard in contact.contactcard_set.all %}
+                                <div class="contact-card">
+                                    <div class="link">
+                                        <a href="{{contactcard.url}}">
+                                            <img src="{{contactcard.main_img.url}}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="card">
+                                        <div class="cardtext">
+                                             <div id="socnet" style="background-color:{{ contactcard.net_color }};">
+                                                <a href="{{contactcard.url}}">
+                                                    <h2>{{contactcard.title}}</h2>
+                                                </a>
+                                            </div>
+                                            <p>{{contactcard.description}}</p>
+                                        </div>
+                                    </div>
+                                </div>    
+                            {% endfor %}
+                        </div>
+                        <h1 id="amigos">La gente de El Jardín</h1>
+                            <div class="asc-container">
+                                <div class="asc-description">
+                                    <div class="desc-container">
+                                        <!-- <h2>Gente del jardín:</h2> -->
+                                        <p> - Ya sea por su calidad humana o por su aporte al ecosistema
+                                            del que forma parte El Jardín, queremos que conozcan a nuestros amigos
+                                            <br>
+                                            <br>
+                                            - Haciendo click en sus respectivas tarjetas podrán ponerse en contacto
+                                             con la gente de El Jardín.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="ascard-col">
+                                    {% for associate in contact.associatecard_set.all %}
+                                    <div class="arrowlink">
+                                        <a href="{{associate.url}}" id="arrowlink">
+                                            <img src="../../static/assets/css/arrowicon.png" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="asc-card" id="asc-card">
+                                        <img src="{{associate.main_img.url}}" alt="">
+                                        <div class="asc-text">
+                                            <div id="asc-head">
+                                                <a href="{{associate.url}}">{{associate.title}}</a>
+                                            </div>
+                                            <p>{{associate.description}}</p>
+                                        </div>
+                                        
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                    {% endfor %}          
+                </section>
+                <div class="spacer ola4"></div>
+                <section id="portfolio">
+                    {% for portfolio in portfolios %}
+                        <div class="portfolio-head">
+                            <h1 id="portfolio-title">Los Frutos<br>del jardín</h1>
+                            <h2 id="portfolio-sub">{{ portfolio.description }}<br>
+                            Accedé al resto del material visitando los links en "<a href="#contact">Contacto</a>"
+                            </h2>
+                        </div>
+                        {% for playlist in portfolio.spotify_playlist_set.all %}
+                            <div class="wrapper">
+                                <div class="author">
+                                    <h2>{{playlist.title}}</h2>
+                                    <p>{{playlist.description}}</p>
+                                </div>
+                                <div class="player">
+                                    <iframe src='https://open.spotify.com/embed/playlist/{{ playlist.spotify_url }}'
+                                    width="100%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% for single in portfolio.spotify_single_set.all %}
+                            <div class="wrapper">
+                                <div class="author">
+                                    <h2>ARTISTA -  {{single.artist_name}}</h2>
+                                    <h2>OBRA -  {{single.title}}</h2>
+                                    <p>{{single.description}}</p>
+                                </div>
+                                <div class="player">
+                                    <iframe src='https://open.spotify.com/embed/track/{{ single.spotify_url }}'
+                                    width="100%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% for album in portfolio.spotify_album_set.all %}
+                            <div class="wrapper">
+                                <div class="author">
+                                    <h2>ARTISTA -  {{album.artist_name}}</h2>
+                                    <h2>ALBUM -  {{album.title}}</h2>
+                                    <p>{{album.description}}</p>
+                                </div>
+                                <div class="player">
+                                    <iframe src='https://open.spotify.com/embed/album/{{ album.spotify_url }}'
+                                    width="100%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% for video in portfolio.youtube_video_set.all %}
+                            <div class="wrapper">
+                                <div class="author">
+                                    <h2>Obra : {{video.title}}</h2>
+                                    <h2>Artista : {{video.artist_name}}</h2>
+                                    <p>{{video.description}}</p>
+                                </div>
+                                <div class="player">
+                                    <iframe width="100%" height="510" src="https://www.youtube.com/embed/{{video.youtube_url}}" title="YouTube video player"
+                                    frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </section>
+            </div>
+        </div>
+        <script src= "../../static/js/carousel.js"></script>
+</body>
+</html>
+<!--
+
+-->
