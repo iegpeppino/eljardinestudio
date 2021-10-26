@@ -129,11 +129,13 @@ USE_TZ = True
 
 #STATIC_URL = '/static/'
 
-GOOGLE_APPLICATION_CREDENTIALS = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+#GOOGLE_APPLICATION_CREDENTIALS = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 # Google bucket credentials
 
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_ACCESS_KEY_ID = os.getenv('JARDIN_BUCKET_ACCESS_KEY')
+GS_SECRET_ACCESS_KEY = os.getenv('JARDIN_BUCKET_SECRET_KEY')
 GS_BUCKET_NAME = 'eljardinestudio'
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 STATIC_URL = 'https://storage.googleapis.com/eljardinestudio/'
