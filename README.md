@@ -4,6 +4,7 @@
 
 App de una sola página para portfolio creado para el estudio de grabación "El Jardín Estudio".
 Para la app se utilizó Python (Django Framework), HTML, CSS y un poco de javascript.
+Los archivos estáticos fueron servidos con "whitenoise" y las imágenes subidas son alojadas con el servicio AWS S3 Buckets.
 La app fue totalmente personalizada en base a la temática y colores del logo del estudio.
 Barra de exploración creada utilizando el logo del estudio para una navegación simple y fluida.
 Las secciones consisten en: 
@@ -21,6 +22,7 @@ Las secciones consisten en:
 
 Single page app created for a recording studio named "El Jardín Estudio".
 The app was coded using Python (Django Framework), HTML, CSS and a little javascript.
+Static files are served with "whitenoise" and uploaded images are hosted using AWS S3 Buckets.
 Totally customized based on the theme and colours of the studio's logo.
 Exploration bar created using the logo for fluid and easy navigation.
 
